@@ -34,26 +34,31 @@
   .home-page .header {
     display: flex;
     flex-direction: column;
-    width: 1502px;
+    width: 100%;
+    max-width: 1500px;
     align-items: center;
     justify-content: center;
     padding: 15px 0px;
     position: absolute;
     top: -1px;
-    left: -1px;
+    left: 50%;
+    transform: translateX(-50%);
     border: 1px solid;
     border-color: #eff0f6;
+    box-sizing: border-box;
   }
   
   .home-page .header-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 102px;
+    padding: 0px 20px;
+    gap: 20px;
     position: relative;
     align-self: stretch;
     width: 100%;
     flex: 0 0 auto;
+    box-sizing: border-box;
   }
   
   .home-page .logo {
@@ -115,9 +120,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 32px;
+    gap: 20px;
     position: relative;
-    flex: 0 0 auto;
+    flex: 1 1 auto;
+    min-width: 0;
   }
   
   .home-page .nav-link {
@@ -143,7 +149,7 @@
     font-family: "DM Sans", Helvetica;
     font-weight: 400;
     color: #170f49;
-    font-size: 18px;
+    font-size: 16px;
     text-align: center;
     letter-spacing: 0;
     line-height: 20.0px;
@@ -158,11 +164,13 @@
   
   .home-page .header-buttons {
     display: flex;
-    width: 299.86px;
+    width: auto;
+    min-width: 0;
     align-items: center;
     justify-content: flex-end;
-    gap: 16px;
+    gap: 12px;
     position: relative;
+    flex-shrink: 0;
   }
   
   .home-page .language-selector {
@@ -171,34 +179,29 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 9px 16px;
+    padding: 9px 12px;
     position: relative;
-    flex: 1;
-    align-self: stretch;
-    flex-grow: 1;
+    flex-shrink: 0;
     border-radius: 10px;
   }
   
   .home-page .language-content {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     position: relative;
     flex: 0 0 auto;
-    margin-left: -19.57px;
-    margin-right: -19.57px;
   }
   
   .home-page .language-content .language-text {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     font-family: "DM Sans", Helvetica;
     font-weight: 500;
     color: #170f49;
-    font-size: 18px;
+    font-size: 16px;
     letter-spacing: 0;
     line-height: normal;
+    white-space: nowrap;
   }
   
   .home-page .icons-bx-chevron {
@@ -209,15 +212,19 @@
   
   .home-page .primary-button {
     display: flex;
-    width: 224px;
+    width: auto;
+    min-width: 140px;
+    max-width: 180px;
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 18px 24px;
+    padding: 18px 16px;
     background-color: var(--secondary);
     border-radius: 10px;
     border: none;
     cursor: pointer;
+    flex-shrink: 1;
+    box-sizing: border-box;
   }
   
   .home-page .button-text {
@@ -229,7 +236,7 @@
     line-height: 18.0px;
     position: relative;
     width: fit-content;
-    font-size: 16px;
+    font-size: 14px;
     letter-spacing: 0;
     white-space: nowrap;
   }
@@ -237,8 +244,10 @@
   .home-page .header-line {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 1500px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1500px;
     height: 1px;
     object-fit: cover;
   }
@@ -457,31 +466,6 @@
   
   .home-page .benefit-title {
     position: absolute;
-    top: 32px;
-    left: 34px;
-    font-family: "Montserrat", Helvetica;
-    font-weight: 800;
-    color: #2a3742;
-    font-size: 28px;
-    letter-spacing: 0;
-    line-height: normal;
-  }
-  
-  .home-page .benefit-text {
-    position: absolute;
-    top: 128px;
-    left: 34px;
-    width: 347px;
-    font-family: "Almarai", Helvetica;
-    font-weight: 400;
-    color: #536579;
-    font-size: 24px;
-    letter-spacing: 0;
-    line-height: 32px;
-  }
-  
-  .home-page .benefit-title {
-    position: absolute;
     top: 38px;
     left: 34px;
     width: 349px;
@@ -500,10 +484,15 @@
     width: 349px;
     font-family: "Almarai", Helvetica;
     font-weight: 400;
-    color: #536579;
+    color: #2a3742;
     font-size: 24px;
     letter-spacing: 0;
     line-height: normal;
+  }
+  
+  .home-page .benefit-card-featured .benefit-title,
+  .home-page .benefit-card-featured .benefit-text {
+    color: var(--blue-100);
   }
   
   .home-page .benefit-card-featured {
@@ -514,32 +503,6 @@
     background-color: var(--primary);
     border-radius: 20px;
     overflow: hidden;
-  }
-  
-  .home-page .benefit-title {
-    position: absolute;
-    top: 38px;
-    left: 34px;
-    width: 349px;
-    font-family: "Montserrat", Helvetica;
-    font-weight: 800;
-    color: var(--blue-100);
-    font-size: 28px;
-    letter-spacing: 0;
-    line-height: normal;
-  }
-  
-  .home-page .benefit-text {
-    position: absolute;
-    top: 128px;
-    left: 34px;
-    width: 349px;
-    font-family: "Almarai", Helvetica;
-    font-weight: 400;
-    color: var(--blue-100);
-    font-size: 24px;
-    letter-spacing: 0;
-    line-height: normal;
   }
   
   .home-page .quote-form-section {
@@ -640,6 +603,18 @@
     flex: 0 0 auto;
   }
   
+  .home-page .form-inputs-row .form-input {
+    width: 45%;
+    flex: 0 0 45%;
+    align-self: flex-start;
+    min-width: 0;
+  }
+  
+  .home-page .form-inputs-row .form-input .input-container,
+  .home-page .form-inputs-row .form-input .input-container-icon {
+    width: 100%;
+  }
+  
   .home-page .input-container {
     display: flex;
     align-items: center;
@@ -702,13 +677,14 @@
   .home-page .form-inputs-row {
     display: flex;
     align-items: flex-start;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: 10px;
     position: relative;
     align-self: stretch;
     width: 100%;
     flex: 0 0 auto;
   }
+  
   
   .home-page .form-input-2 {
     display: flex;
@@ -812,7 +788,7 @@
   .home-page .chart-circle {
     position: absolute;
     top: 21px;
-    left: 40px;
+    left: 28px;
     width: 96px;
     height: 115px;
   }
