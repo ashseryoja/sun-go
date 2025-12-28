@@ -1969,27 +1969,18 @@
    Desktop (1500px+) keeps original design
    =================================== */
 
-/* Tablet horizontal mode (768px-1499px, landscape orientation)
-   Scale down proportionally, preserve layout and positions */
-@media (min-width: 768px) and (max-width: 1499px) and (min-aspect-ratio: 1/1) {
+/* Tablet landscape (1024px-1499px) */
+@media (min-width: 1024px) and (max-width: 1499px) {
   html, body {
     overflow-x: hidden;
     width: 100%;
-    position: relative;
   }
   
   .home-page {
-    transform-origin: top center;
-    /* Scale proportionally based on viewport width */
-    transform: scale(calc(100vw / 1500));
-    width: 1500px;
-    /* Center horizontally using left positioning */
-    position: relative;
-    left: 50%;
-    margin-left: -750px; /* Half of 1500px to center */
+    width: 100%;
+    max-width: 100%;
   }
   
-  /* Reset absolute positioning for scaled layout - use relative positioning */
   .home-page .header {
     position: relative !important;
     transform: none !important;
@@ -2009,7 +2000,8 @@
     transform: none !important;
     left: auto !important;
     top: auto !important;
-    padding: 40px 20px !important;
+    padding: 40px 30px !important;
+    max-width: 100%;
   }
   
   .home-page .footer {
@@ -2018,33 +2010,255 @@
     left: auto !important;
     top: auto !important;
     margin: 120px auto 0 !important;
+    max-width: 100%;
+  }
+  
+  /* Adjust hero section for tablet */
+  .home-page .hero-section {
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+  }
+  
+  .home-page .hero-content {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .home-page .hero-title {
+    font-size: 40px;
+    line-height: 1.2;
+  }
+  
+  .home-page .hero-subtitle {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+  
+  .home-page .section-title {
+    font-size: 36px;
+  }
+  
+  .home-page .hero-images {
+    max-width: 638px;
+    width: 100%;
+    height: 495px;
+    min-height: 400px;
+    position: relative;
+  }
+  
+  .home-page .hero-image:nth-child(1) {
+    width: 48.5%;
+    max-width: 314px;
+  }
+  
+  .home-page .hero-image:nth-child(2) {
+    width: 48.5%;
+    max-width: 314px;
+  }
+  
+  .home-page .hero-image:nth-child(3) {
+    width: 48.5%;
+    max-width: 314px;
+    left: 50.5%;
+  }
+  
+  .home-page .hero-image:nth-child(4) {
+    width: 48.5%;
+    max-width: 314px;
+    left: 50.5%;
+  }
+  
+  /* Hide quote form image on tablet */
+  .home-page .quote-form-image,
+  .home-page .quote-form-overlay {
+    display: none;
+  }
+  
+  .home-page .quote-form-section {
+    padding: 40px 30px;
+  }
+  
+  /* Make service cards responsive */
+  .home-page .service-card,
+  .home-page .service-card-border {
+    min-width: calc(50% - 15px);
+    width: calc(50% - 15px);
+    max-width: none;
+    flex: 1 1 calc(50% - 15px);
+  }
+  
+  .home-page .services-grid {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    justify-content: center;
+  }
+  
+  .home-page .services-container {
+    overflow-x: visible;
+  }
+  
+  /* Adjust product showcase */
+  .home-page .product-showcase {
+    padding: 40px 30px;
+    padding-bottom: 450px;
+  }
+  
+  .home-page .product-image-container {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 40px auto 0;
+    max-width: 100%;
+  }
+  
+  .home-page .product-info {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 40px auto 0;
+    padding: 0 20px;
+    max-width: 100%;
+  }
+  
+  /* Adjust stats section */
+  .home-page .stats-section {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .home-page .stats-image-container {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .home-page .stats-image {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100%;
+    height: auto;
+  }
+  
+  .home-page .stats-card {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 30px auto 0;
+  }
+  
+  /* Quote form adjustments */
+  .home-page .quote-form-header {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+  }
+  
+  .home-page .quote-form {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 30px auto 0;
+    max-width: 100%;
+  }
+  
+  .home-page .form-inputs-row {
+    flex-wrap: wrap;
+  }
+  
+  .home-page .form-inputs-row .form-input {
+    width: 100%;
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+  
+  /* Services CTA */
+  .home-page .services-cta {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .home-page .services-cta-image {
+    max-width: 100%;
+    width: 100%;
   }
 }
 
-/* Tablet portrait and vertical tablet (max-width: 1024px, portrait orientation)
-   OR mobile devices - rearrange for vertical stacking */
-@media (max-width: 1024px) and (max-aspect-ratio: 1/1),
-       (max-width: 767px) {
-  /* Reset any scaling from horizontal tablet mode */
+/* Tablet portrait (768px-1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
   .home-page {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .home-page .header {
+    position: relative !important;
     transform: none !important;
-    width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    left: auto !important;
+    top: auto !important;
+  }
+  
+  .home-page .header-line {
+    position: relative !important;
+    transform: none !important;
+    left: auto !important;
+    top: auto !important;
   }
   
   .home-page .main-content {
     gap: 60px;
     padding: 30px 20px;
+    position: relative !important;
+    transform: none !important;
+    left: auto !important;
+    top: auto !important;
+    max-width: 100%;
+  }
+  
+  .home-page .footer {
+    position: relative !important;
+    transform: none !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 120px auto 0 !important;
+    max-width: 100%;
   }
   
   .home-page .hero-section {
     gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .home-page .hero-content {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .home-page .hero-title {
+    font-size: 38px;
+    line-height: 1.2;
+  }
+  
+  .home-page .hero-subtitle {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+  
+  .home-page .section-title {
+    font-size: 34px;
   }
   
   .home-page .hero-images {
     max-width: 550px;
-    height: 427px;
+    width: 100%;
+    height: auto;
+    min-height: 427px;
   }
   
   .home-page .hero-image:nth-child(1) {
@@ -2072,52 +2286,156 @@
   
   .home-page .benefits-grid {
     gap: 20px;
+    flex-wrap: wrap;
   }
   
   .home-page .benefit-card,
   .home-page .benefit-card-featured {
     min-width: calc(50% - 10px);
     flex: 1 1 calc(50% - 10px);
+    max-width: calc(50% - 10px);
   }
   
   .home-page .quote-form-section {
     padding: 40px 30px;
   }
   
+  /* Hide quote form image on tablet portrait */
+  .home-page .quote-form-image,
+  .home-page .quote-form-overlay {
+    display: none;
+  }
+  
+  .home-page .quote-form-header {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+  }
+  
+  .home-page .quote-form {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 30px auto 0;
+    max-width: 100%;
+  }
+  
+  .home-page .form-inputs-row {
+    flex-wrap: wrap;
+  }
+  
+  .home-page .form-inputs-row .form-input {
+    width: 100%;
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+  
   .home-page .stats-section {
     gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .home-page .stats-image-container {
-    max-width: 500px;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .home-page .stats-image {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100%;
+    height: auto;
+  }
+  
+  .home-page .stats-card {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 30px auto 0;
+  }
+  
+  .home-page .service-card,
+  .home-page .service-card-border {
+    min-width: calc(50% - 15px);
+    width: calc(50% - 15px);
+    max-width: none;
+  }
+  
+  .home-page .services-grid {
+    flex-wrap: wrap;
+    overflow-x: visible;
   }
   
   .home-page .product-showcase {
+    padding: 40px 30px;
     padding-bottom: 450px;
   }
   
   .home-page .product-image-container {
-    max-width: 450px;
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 40px auto 0;
+    max-width: 100%;
+    width: 100%;
     min-height: 450px;
+  }
+  
+  .home-page .product-info {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 40px auto 0;
+    padding: 0 20px;
+    max-width: 100%;
   }
   
   .home-page .services-cta {
     gap: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .home-page .services-cta-image {
     max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* Tablet and below - ensure header buttons fit */
+@media (max-width: 1024px) {
+  .home-page .header-content {
+    flex-wrap: nowrap;
+    gap: 15px;
+  }
+  
+  .home-page .nav-list {
+    display: none;
+  }
+  
+  .home-page .header-buttons {
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  
+  .home-page .primary-button {
+    min-width: 120px;
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+  
+  .home-page .button-text {
+    font-size: 14px;
   }
 }
 
 /* Mobile landscape (max-width: 768px) */
 @media (max-width: 768px) {
-  /* Reset any scaling from horizontal tablet mode */
   .home-page {
-    transform: none !important;
     width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    max-width: 100% !important;
   }
   
   .home-page .header-content {
