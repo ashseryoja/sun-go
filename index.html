@@ -19,7 +19,12 @@
               <div class="logo-dot"></div>
             </div>
           </div>
-          <nav class="nav-list">
+          <button class="burger-menu" id="burgerMenu" aria-label="Toggle navigation menu">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+          </button>
+          <nav class="nav-list" id="navList">
             <a href="#" class="nav-link">
               <div class="link-content">
                 <span class="link-text">About Us</span>
@@ -56,6 +61,7 @@
         </div>
       </header>
       
+      <div class="nav-overlay" id="navOverlay"></div>
       <img class="header-line" src="https://c.animaapp.com/mjmwibfolewsep/img/line-4.svg" />
       
       <main class="main-content">
@@ -311,5 +317,6 @@
       </footer>
     </div>
     <script src="slider.js"></script>
+    <script src="burger-menu.js"></script>
   </body>
 </html>

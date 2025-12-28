@@ -117,10 +117,130 @@
   min-width: 0;
 }
 
+/* Burger Menu Styles */
+.home-page .burger-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 101;
+  position: relative;
+}
+
+.home-page .burger-line {
+  width: 100%;
+  height: 3px;
+  background-color: #170f49;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Burger menu active state (X shape) */
+.home-page .burger-menu.active .burger-line:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.home-page .burger-menu.active .burger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.home-page .burger-menu.active .burger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* Responsive: Show burger menu and hide nav-list on small screens */
+@media (max-width: 1024px) {
+  .home-page .burger-menu {
+    display: flex;
+    order: 2;
+    margin-left: auto;
+  }
+  
+  .home-page .nav-list {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    max-width: 80vw;
+    height: 100vh;
+    background-color: #f7f6fc;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0;
+    padding: 80px 30px 30px;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 100;
+    overflow-y: auto;
+  }
+  
+  .home-page .nav-list.active {
+    right: 0;
+  }
+  
+  .home-page .nav-link {
+    width: 100%;
+    padding: 15px 0;
+    border-bottom: 1px solid #eff0f6;
+  }
+  
+  .home-page .nav-link:last-child {
+    border-bottom: none;
+  }
+  
+  .home-page .link-content {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .home-page .link-text {
+    font-size: 18px;
+  }
+  
+  /* Overlay when menu is open */
+  .home-page .nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    transition: opacity 0.3s ease;
+  }
+  
+  .home-page .nav-overlay.active {
+    display: block;
+  }
+  
+  /* Adjust header buttons for tablet */
+  .home-page .header-buttons {
+    gap: 10px;
+  }
+  
+  .home-page .primary-button {
+    min-width: 120px;
+    padding: 14px 16px;
+  }
+}
+
 @media (max-width: 768px) {
   .home-page .nav-list {
-    flex: 1 1 100%;
-    order: 3;
+    width: 100%;
+    max-width: 100vw;
+    right: -100%;
+  }
+  
+  .home-page .nav-list.active {
+    right: 0;
   }
 }
 
@@ -1849,34 +1969,70 @@
    Desktop (1500px+) keeps original design
    =================================== */
 
-/* Tablet landscape and smaller desktops (max-width: 1499px) */
-@media (max-width: 1499px) {
+/* Tablet horizontal mode (768px-1499px, landscape orientation)
+   Scale down proportionally, preserve layout and positions */
+@media (min-width: 768px) and (max-width: 1499px) and (min-aspect-ratio: 1/1) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+  
+  .home-page {
+    transform-origin: top center;
+    /* Scale proportionally based on viewport width */
+    transform: scale(calc(100vw / 1500));
+    width: 1500px;
+    /* Center horizontally using left positioning */
+    position: relative;
+    left: 50%;
+    margin-left: -750px; /* Half of 1500px to center */
+  }
+  
+  /* Reset absolute positioning for scaled layout - use relative positioning */
+  .home-page .header {
+    position: relative !important;
+    transform: none !important;
+    left: auto !important;
+    top: auto !important;
+  }
+  
+  .home-page .header-line {
+    position: relative !important;
+    transform: none !important;
+    left: auto !important;
+    top: auto !important;
+  }
+  
   .home-page .main-content {
-    gap: 80px;
+    position: relative !important;
+    transform: none !important;
+    left: auto !important;
+    top: auto !important;
+    padding: 40px 20px !important;
   }
   
-  .home-page .hero-section {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .home-page .hero-content {
-    align-items: center;
-    text-align: center;
-  }
-  
-  .home-page .hero-text {
-    align-items: center;
-  }
-  
-  .home-page .hero-buttons {
-    justify-content: center;
+  .home-page .footer {
+    position: relative !important;
+    transform: none !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 120px auto 0 !important;
   }
 }
 
-/* Tablet portrait (max-width: 1024px) */
-@media (max-width: 1024px) {
+/* Tablet portrait and vertical tablet (max-width: 1024px, portrait orientation)
+   OR mobile devices - rearrange for vertical stacking */
+@media (max-width: 1024px) and (max-aspect-ratio: 1/1),
+       (max-width: 767px) {
+  /* Reset any scaling from horizontal tablet mode */
+  .home-page {
+    transform: none !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
   .home-page .main-content {
     gap: 60px;
     padding: 30px 20px;
@@ -1956,42 +2112,58 @@
 
 /* Mobile landscape (max-width: 768px) */
 @media (max-width: 768px) {
+  /* Reset any scaling from horizontal tablet mode */
+  .home-page {
+    transform: none !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
   .home-page .header-content {
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: nowrap;
+    justify-content: space-between;
     gap: 15px;
     padding: 15px 20px;
   }
   
   .home-page .logo {
     order: 1;
+    flex-shrink: 0;
+  }
+  
+  .home-page .burger-menu {
+    order: 2;
   }
   
   .home-page .header-buttons {
-    order: 2;
+    order: 3;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
+    flex-shrink: 0;
   }
   
-  .home-page .nav-list {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-  }
+  /* Nav list is handled by burger menu styles above */
   
   .home-page .link-text {
     font-size: 14px;
   }
   
   .home-page .primary-button {
-    min-width: 120px;
-    padding: 12px 16px;
+    min-width: 100px;
+    padding: 12px 14px;
   }
   
   .home-page .button-text {
     font-size: 12px;
+  }
+  
+  .home-page .language-selector {
+    padding: 8px 10px;
+  }
+  
+  .home-page .language-content .language-text {
+    font-size: 14px;
   }
   
   .home-page .main-content {
@@ -2132,6 +2304,17 @@
 @media (max-width: 480px) {
   .home-page .header-content {
     padding: 12px 15px;
+    gap: 10px;
+  }
+  
+  .home-page .logo {
+    width: 80px;
+    height: 22px;
+  }
+  
+  .home-page .burger-menu {
+    width: 26px;
+    height: 26px;
   }
   
   .home-page .link-text {
@@ -2139,12 +2322,24 @@
   }
   
   .home-page .primary-button {
-    min-width: 90px;
+    min-width: 80px;
     padding: 10px 12px;
   }
   
   .home-page .button-text {
     font-size: 11px;
+  }
+  
+  .home-page .language-selector {
+    padding: 6px 8px;
+  }
+  
+  .home-page .language-content .language-text {
+    font-size: 12px;
+  }
+  
+  .home-page .header-buttons {
+    gap: 6px;
   }
   
   .home-page .main-content {
