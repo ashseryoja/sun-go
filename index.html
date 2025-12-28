@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script defer src="./injectScript.js"></script>
+	<script defer src="./injectScript.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <link rel="stylesheet" href="globals.css" />
@@ -220,22 +220,34 @@
           </div>
 
           <div class="product-showcase">
-            <div class="product-image-container">
-              <img class="product-bg-vector" src="https://c.animaapp.com/mjmwibfolewsep/img/vector-3.svg" />
-              <img class="product-image" src="https://c.animaapp.com/mjmwibfolewsep/img/image-removebg-preview-1.png" />
+            <div class="product-image-container" id="productSlider">
+              <div class="slider-wrapper">
+                <div class="slider-track" id="sliderTrack">
+                  <!-- Slide 1 -->
+                  <div class="slide active">
+                    <img class="product-bg-vector" src="https://c.animaapp.com/mjmwibfolewsep/img/vector-3.svg" />
+                    <img class="product-image" src="https://c.animaapp.com/mjmwibfolewsep/img/image-removebg-preview-1.png" />
+                  </div>
+                  <!-- Slide 2 -->
+                  <div class="slide">
+                    <img class="product-bg-vector" src="https://c.animaapp.com/mjmwibfolewsep/img/vector-3.svg" />
+                    <img class="product-image" src="https://c.animaapp.com/mjmwibfolewsep/img/image-removebg-preview-1.png" />
+                  </div>
+                  <!-- Slide 3 -->
+                  <div class="slide">
+                    <img class="product-bg-vector" src="https://c.animaapp.com/mjmwibfolewsep/img/vector-3.svg" />
+                    <img class="product-image" src="https://c.animaapp.com/mjmwibfolewsep/img/image-removebg-preview-1.png" />
+                  </div>
+                </div>
+              </div>
               <div class="product-navigation">
-                <button class="nav-arrow">
+                <button class="nav-arrow" id="prevSlide" aria-label="Previous slide">
                   <img src="https://c.animaapp.com/mjmwibfolewsep/img/icons-bx-chevron-left-2.svg" />
                 </button>
-                <div class="product-title-badge">SunMax 360</div>
-                <button class="nav-arrow">
+                <div class="product-title-badge" id="productTitle">SunMax 360</div>
+                <button class="nav-arrow" id="nextSlide" aria-label="Next slide">
                   <img src="https://c.animaapp.com/mjmwibfolewsep/img/icons-bx-chevron-left.svg" />
                 </button>
-              </div>
-              <div class="product-dots">
-                <div class="dot"></div>
-                <div class="dot dot-active"></div>
-                <div class="dot"></div>
               </div>
             </div>
             <div class="product-info">
@@ -272,103 +284,6 @@
             </div>
           </div>
         </section>
-
-        <section class="testimonials-section">
-          <h2 class="section-title">They trust Sungo</h2>
-          <div class="testimonials-grid">
-            <article class="testimonial-card">
-              <div class="stars">
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-              </div>
-              <p class="testimonial-text">
-                Website design did exactly what you said it does. Just what I was looking for. Nice work on your website
-                design.
-              </p>
-              <div class="testimonial-author">
-                <span class="author-name">Kyle Roberts DVM</span>
-                <span class="author-role">Customer Web Consultant</span>
-              </div>
-              <img class="testimonial-avatar" src="https://c.animaapp.com/mjmwibfolewsep/img/ellipse-1-4.png" />
-            </article>
-            <article class="testimonial-card">
-              <div class="stars">
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-              </div>
-              <p class="testimonial-text">
-                I will let my mum know about this, she could really make use of software! Very easy to use. Since I
-                invested in software I made over 100,000 dollars profits. I just can't get enough of software. I
-                want to get a T-Shirt with software on it so I can show it off to everyone.
-              </p>
-              <div class="testimonial-author">
-                <span class="author-name">Sophia Anderson</span>
-                <span class="author-role">Internal Implementation Officer</span>
-              </div>
-              <img class="testimonial-avatar" src="https://c.animaapp.com/mjmwibfolewsep/img/ellipse-1-3.png" />
-            </article>
-            <article class="testimonial-card">
-              <div class="stars">
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-              </div>
-              <p class="testimonial-text">
-                If you want real marketing that works and effective implementation - mobile app's got you covered.
-              </p>
-              <div class="testimonial-author">
-                <span class="author-name">Stephen Brekke</span>
-                <span class="author-role">Legacy Integration Producer</span>
-              </div>
-              <img class="testimonial-avatar" src="https://c.animaapp.com/mjmwibfolewsep/img/ellipse-1-2.png" />
-            </article>
-            <article class="testimonial-card testimonial-card-alt">
-              <div class="stars">
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-              </div>
-              <p class="testimonial-text testimonial-text-alt">
-                I will let my mum know about this, she could really make use of software! Very easy to use. Since I
-                invested in software I made over 100,000 dollars profits. I just can't get enough of software. I
-                want to get a T-Shirt with software on it so I can show it off to everyone.
-              </p>
-              <div class="testimonial-author">
-                <span class="author-name">Sophia Anderson</span>
-                <span class="author-role">Internal Implementation Officer</span>
-              </div>
-              <img class="testimonial-avatar" src="https://c.animaapp.com/mjmwibfolewsep/img/ellipse-1-3.png" />
-            </article>
-            <article class="testimonial-card testimonial-card-alt2">
-              <div class="stars">
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-                <img class="star-icon" src="https://c.animaapp.com/mjmwibfolewsep/img/star-1.svg" />
-              </div>
-              <p class="testimonial-text testimonial-text-alt2">
-                Website design did exactly what you said it does. Just what I was looking for. Nice work on your website
-                design.
-              </p>
-              <div class="testimonial-author">
-                <span class="author-name">Kyle Roberts DVM</span>
-                <span class="author-role">Customer Web Consultant</span>
-              </div>
-              <img class="testimonial-avatar" src="https://c.animaapp.com/mjmwibfolewsep/img/ellipse-1-4.png" />
-            </article>
-          </div>
-        </section>
       </main>
 
       <footer class="footer">
@@ -400,5 +315,6 @@
         </div>
       </footer>
     </div>
+    <script src="slider.js"></script>
   </body>
 </html>
