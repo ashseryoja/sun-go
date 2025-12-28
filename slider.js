@@ -1,8 +1,20 @@
-// Product Slider - Clean Implementation
+/**
+ * Product Slider - Interactive Product Showcase
+ * 
+ * Features:
+ * - Smooth slide transitions
+ * - Touch/Swipe support for mobile
+ * - Mouse drag support for desktop
+ * - Keyboard navigation (Arrow keys)
+ * - Automatic content updates
+ */
+
 (function() {
   'use strict';
 
-  // Slider data
+  /* ================================
+     CONFIGURATION
+     ================================ */
   const slides = [
     {
       title: 'SunMax 360',
@@ -24,13 +36,18 @@
     }
   ];
 
+  /* ================================
+     STATE VARIABLES
+     ================================ */
   let currentSlide = 0;
   let isTransitioning = false;
   let startX = 0;
   let currentX = 0;
   let isDragging = false;
 
-  // DOM elements
+  /* ================================
+     DOM ELEMENTS
+     ================================ */
   const slider = document.getElementById('productSlider');
   const sliderTrack = document.getElementById('sliderTrack');
   const productTitle = document.getElementById('productTitle');
@@ -42,7 +59,14 @@
   const productName = document.querySelector('.product-name');
   const productDescription = document.querySelector('.product-description');
 
-  // Update product info
+  /* ================================
+     CORE FUNCTIONS
+     ================================ */
+
+  /**
+   * Update product information based on current slide
+   * @param {number} index - Slide index
+   */
   function updateProductInfo(index) {
     const slide = slides[index];
     productTitle.textContent = slide.title;
@@ -51,44 +75,62 @@
     if (productDescription) productDescription.textContent = slide.description;
   }
 
-  // Move to slide
+  /**
+   * Navigate to specific slide
+   * @param {number} index - Target slide index
+   * @param {boolean} smooth - Enable smooth transition
+   */
   function goToSlide(index, smooth = true) {
     if (isTransitioning || index < 0 || index >= slides.length) return;
     
+    // Set transition mode
     if (!smooth) {
       sliderTrack.style.transition = 'none';
     } else {
       sliderTrack.style.transition = 'transform 0.4s ease-out';
     }
     
+    // Calculate and apply transform
     currentSlide = index;
     const offset = -currentSlide * 100;
     sliderTrack.style.transform = `translateX(${offset}%)`;
     
+    // Update product info
     updateProductInfo(currentSlide);
     
+    // Restore transition if disabled
     if (!smooth) {
-      // Force reflow
-      sliderTrack.offsetHeight;
+      sliderTrack.offsetHeight; // Force reflow
       sliderTrack.style.transition = 'transform 0.4s ease-out';
     }
   }
 
-  // Next slide
+  /**
+   * Navigate to next slide
+   */
   function nextSlide() {
     if (isTransitioning) return;
     const nextIndex = (currentSlide + 1) % slides.length;
     goToSlide(nextIndex);
   }
 
-  // Previous slide
+  /**
+   * Navigate to previous slide
+   */
   function prevSlide() {
     if (isTransitioning) return;
     const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
     goToSlide(prevIndex);
   }
 
-  // Touch/Mouse start
+  /* ================================
+     INTERACTION HANDLERS
+     ================================ */
+
+  /**
+   * Handle drag/swipe start
+   * @param {number} clientX - Starting X position
+   */
   function handleStart(clientX) {
     if (isTransitioning) return;
     isDragging = true;
@@ -97,7 +139,10 @@
     sliderTrack.style.transition = 'none';
   }
 
-  // Touch/Mouse move
+  /**
+   * Handle drag/swipe move
+   * @param {number} clientX - Current X position
+   */
   function handleMove(clientX) {
     if (!isDragging) return;
     
@@ -109,7 +154,9 @@
     sliderTrack.style.transform = `translateX(${currentOffset + movePercent}%)`;
   }
 
-  // Touch/Mouse end
+  /**
+   * Handle drag/swipe end
+   */
   function handleEnd() {
     if (!isDragging) return;
     
@@ -119,24 +166,25 @@
     
     sliderTrack.style.transition = 'transform 0.4s ease-out';
     
+    // Determine slide change based on swipe distance
     if (Math.abs(diff) > threshold) {
       if (diff > 0) {
-        // Swiped right - previous
-        prevSlide();
+        prevSlide(); // Swiped right
       } else {
-        // Swiped left - next
-        nextSlide();
+        nextSlide(); // Swiped left
       }
     } else {
-      // Return to current slide
-      goToSlide(currentSlide);
+      goToSlide(currentSlide); // Return to current
     }
     
     startX = 0;
     currentX = 0;
   }
 
-  // Touch events
+  /* ================================
+     TOUCH EVENT HANDLERS
+     ================================ */
+
   function handleTouchStart(e) {
     handleStart(e.touches[0].clientX);
   }
@@ -150,7 +198,10 @@
     handleEnd();
   }
 
-  // Mouse events
+  /* ================================
+     MOUSE EVENT HANDLERS
+     ================================ */
+
   function handleMouseDown(e) {
     e.preventDefault();
     handleStart(e.clientX);
@@ -177,8 +228,15 @@
     }
   }
 
-  // Initialize
+  /* ================================
+     INITIALIZATION
+     ================================ */
+
+  /**
+   * Initialize slider functionality
+   */
   function init() {
+    // Validate required elements
     if (!slider || !sliderTrack || !productTitle) {
       console.error('Required slider elements not found');
       return;
@@ -187,32 +245,32 @@
     // Set initial state
     goToSlide(0, false);
     
-    // Add cursor style
+    // Configure slider appearance
     slider.style.cursor = 'grab';
     slider.style.userSelect = 'none';
 
-    // Button events
+    // Attach button event listeners
     if (prevButton) prevButton.addEventListener('click', prevSlide);
     if (nextButton) nextButton.addEventListener('click', nextSlide);
 
-    // Touch events
+    // Attach touch event listeners
     slider.addEventListener('touchstart', handleTouchStart, { passive: true });
     slider.addEventListener('touchmove', handleTouchMove, { passive: false });
     slider.addEventListener('touchend', handleTouchEnd);
 
-    // Mouse events
+    // Attach mouse event listeners
     slider.addEventListener('mousedown', handleMouseDown);
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
     slider.addEventListener('mouseleave', handleMouseLeave);
 
-    // Keyboard navigation
+    // Keyboard navigation support
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') prevSlide();
       if (e.key === 'ArrowRight') nextSlide();
     });
 
-    // Transition lock
+    // Transition state management
     sliderTrack.addEventListener('transitionstart', () => {
       isTransitioning = true;
     });
@@ -220,6 +278,8 @@
     sliderTrack.addEventListener('transitionend', () => {
       isTransitioning = false;
     });
+
+    console.log('Product slider initialized successfully');
   }
 
   // Initialize when DOM is ready
@@ -228,4 +288,5 @@
   } else {
     init();
   }
+
 })();
